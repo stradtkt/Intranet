@@ -106,7 +106,7 @@ namespace Intra.Controllers
         }
 
         [HttpPut("employee/{id}/edit")]
-        public IActionResult EditEmplyee(int id, string name, string email, string image, string work, string job,
+        public IActionResult EditEmployee(int id, string name, string email, string image, string work, string job,
             DateTime hire, DateTime dob, string sex, decimal salary, decimal bonus)
         {
             if (ActiveUser == null)
