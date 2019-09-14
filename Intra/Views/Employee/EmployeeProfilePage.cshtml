@@ -1,0 +1,28 @@
+@model Intra.Models.Employee
+@{
+    ViewData["Title"] = "Employee Profile Page";
+}
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <img src="~/img/@ViewBag.Emp.Image" alt="" class="card-img-top">
+            <div class="card-content">
+                <h3 class="card-title text-center">@ViewBag.Emp.Name <a href="" class="btn btn-sm btn-round btn-warning" title="Edit Section">&square;</a></h3>
+                <div class="col-6">
+                    <p class="card-title text-center">@ViewBag.Emp.EmployeeId <a href="" class="btn btn-sm btn-round btn-warning" title="Edit Section">&square;</a></p>
+                    <p class="lead text-left">@ViewBag.Emp.Email <a href="" class="btn btn-sm btn-round btn-warning" title="Edit Section">&square;</a></p>
+                    <p class="lead text-left">@ViewBag.Emp.WorkDept <a href="" class="btn btn-sm btn-round btn-warning" title="Edit Section">&square;</a></p>
+                    <p class="lead text-left">@ViewBag.Emp.Job <a href="" class="btn btn-sm btn-round btn-warning" title="Edit Section">&square;</a></p>
+                    <p class="lead text-left">@ViewBag.Emp.PhoneNo <a href="" class="btn btn-sm btn-round btn-warning" title="Edit Section">&square;</a></p>
+                </div>
+                <div class="col-6">
+                    <p class="lead text-left">@ViewBag.Emp.HireDate <a href="" class="btn btn-sm btn-round btn-warning" title="Edit Section">&square;</a></p>
+                    <p class="lead text-left">@ViewBag.Emp.Birthday <a href="" class="btn btn-sm btn-round btn-warning" title="Edit Section">&square;</a></p>
+                    <p class="lead text-left">@ViewBag.Emp.Sex <a href="" class="btn btn-sm btn-round btn-warning" title="Edit Section">&square;</a></p>
+                    <p class="lead text-left">@ViewBag.Emp.Salary <a href="" class="btn btn-sm btn-round btn-warning" title="Edit Section">&square;</a></p>
+                    <p class="lead text-left">@ViewBag.Emp.Bonus <a href="" class="btn btn-sm btn-round btn-warning" title="Edit Section">&square;</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -48,6 +48,7 @@ namespace Intra.Controllers
                 {
                     Name = employee.Name,
                     Email = user.Email,
+                    Image = employee.Image,
                     WorkDept = employee.WorkDept,
                     PhoneNo = employee.PhoneNo,
                     Job = employee.Job,

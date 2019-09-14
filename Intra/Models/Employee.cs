@@ -8,6 +8,7 @@ namespace Intra.Models
         [Key] public int EmplyeeId { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
+        public string Image { get; set; }
         public string WorkDept { get; set; }
         public string PhoneNo { get; set; }
         public string Job { get; set; }
