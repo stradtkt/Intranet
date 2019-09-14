@@ -17,12 +17,9 @@
         <div class="card">
             <h1 class="text-center text-info card-title">@ViewData["Title"]</h1>
             <div class="card-content">
-                <form action="" asp-action="EditEmployee" asp-controller="Employee" method="post">
+                <form asp-action="EditEmployee" asp-controller="Employee" method="post">
                     <div class="form-group">
                         <input type="text" name="Name" id="" class="form-control" value="@Model.Name">
-                    </div>
-                    <div class="form-group">
-                        <input type="email" name="Email" id="" class="form-control" value="@Model.Email">
                     </div>
                     <div class="form-group">
                         <input type="text" name="WorkDept" id="" class="form-control" value="@Model.WorkDept">
@@ -32,9 +29,6 @@
                     </div>
                     <div class="form-group">
                         <input type="text" name="Job" id="" class="form-control" value="@Model.Job">
-                    </div>
-                    <div class="form-group">
-                        <input type="datetime" name="Birthday" id="" class="form-control" value="@Model.Birthday">
                     </div>
                     <div class="form-group">
                         <input type="datetime" name="HireDate" id="" class="form-control" value="@Model.HireDate">
