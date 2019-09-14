@@ -6,6 +6,7 @@
     <e p="C:\Users\Kevin\.Rider2019.2\system\resharper-host\local\Transient\ReSharperHost\v192\SolutionCaches\_Intra.-305459643.00" t="ExcludeRecursive" />
     <e p="C:\Users\Kevin\Desktop\development\Intra" t="IncludeFlat">
       <e p="Intra" t="IncludeRecursive">
+        <e p=".gitignore" t="Include" />
         <e p="app.config" t="Include" />
         <e p="appsettings.Development.json" t="Include" />
         <e p="appsettings.json" t="Include" />
