@@ -136,13 +136,32 @@ namespace Intra.Controllers
         }
 
         [HttpPost("add-user")]
-        public IActionResult AddUser()
+        public IActionResult AddUser(User user)
         {
+            if (ActiveUser == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
             if (ModelState.IsValid)
             {
-                
+                if (user.Password == user.ConfirmPassword)
+                {
+                    PasswordHasher<User> hasher = new PasswordHasher<User>();
+                    User newUser = new User
+                    {
+                        FirstName = user.FirstName,
+                        LastName = user.LastName,
+                        Email = user.Email,
+                        Password = hasher.HashPassword(user, user.Password)
+                    };
+                }
+                else
+                {
+                    ViewBag.errors = "Confirm Password does not match up with the Password.";
+                    return RedirectToAction("AddUserPage");
+                }
             }
-
+            ViewBag.errors = "User was not added.";
             return View("AddUserPage");
         }
     }
