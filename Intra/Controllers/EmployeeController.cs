@@ -37,32 +37,41 @@ namespace Intra.Controllers
         [HttpPost("add-employee")]
         public IActionResult AddEmployee(Employee employee, User user)
         {
+            User checkEmail = _context.Users.Where(u => u.Email == user.Email).SingleOrDefault();
             if (ActiveUser == null)
             {
                 return RedirectToAction("Login", "User");
             }
 
-            if (ModelState.IsValid)
+            if (checkEmail == null)
             {
-                Employee newEmp = new Employee
+                if (ModelState.IsValid)
                 {
-                    Name = employee.Name,
-                    Email = user.Email,
-                    Image = employee.Image,
-                    WorkDept = employee.WorkDept,
-                    PhoneNo = employee.PhoneNo,
-                    Job = employee.Job,
-                    HireDate = employee.HireDate,
-                    Sex = employee.Sex,
-                    Birthday = user.Birthday,
-                    Salary = employee.Salary,
-                    Bonus = employee.Bonus
-                };
-                _context.Employees.Add(newEmp);
-                _context.SaveChanges();
+                    Employee newEmp = new Employee
+                    {
+                        Name = employee.Name,
+                        Email = user.Email,
+                        Image = employee.Image,
+                        WorkDept = employee.WorkDept,
+                        PhoneNo = employee.PhoneNo,
+                        Job = employee.Job,
+                        HireDate = employee.HireDate,
+                        Sex = employee.Sex,
+                        Birthday = user.Birthday,
+                        Salary = employee.Salary,
+                        Bonus = employee.Bonus
+                    };
+                    _context.Employees.Add(newEmp);
+                    _context.SaveChanges();
+                    ViewBag.success = "Employee added!";
+                    return RedirectToAction("Employees");
+                }
+            }
+            else
+            {
+                ViewBag.errors = "User already exists";
                 return RedirectToAction("Employees");
             }
-
             ViewBag.errors = "Employee was not added, please try again.";
             return View("AddEmployeePage");
         }

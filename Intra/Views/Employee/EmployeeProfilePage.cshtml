@@ -3,6 +3,16 @@
     ViewData["Title"] = "Employee Profile Page";
 }
 <div class="row">
+    <div class="col-md-6 offset-3">
+        <div class="bg-danger">
+            <p class="text-center text-white">@ViewBag.errors</p>
+        </div>
+        <div class="bg-success">
+            <p class="text-center text-white">@ViewBag.success</p>
+        </div>
+    </div>
+</div>
+<div class="row">
     <div class="col-12">
         <div class="card">
             <img src="~/img/@ViewBag.Emp.Image" alt="" class="card-img-top">

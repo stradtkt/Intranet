@@ -1,0 +1,19 @@
+@model Intra.Models.User
+@{
+    ViewData["Title"] = "Add User";
+}
+<div class="row">
+    <div class="col-md-6 offset-3">
+        <div class="bg-danger">
+            <p class="text-center text-white">@ViewBag.errors</p>
+        </div>
+        <div class="bg-success">
+            <p class="text-center text-white">@ViewBag.success</p>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 col-md-7 offset-md-3">
+        <h1 class="text-center text-info">@ViewData["Title"]</h1>
+    </div>
+</div>
