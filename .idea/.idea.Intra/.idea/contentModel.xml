@@ -50,6 +50,7 @@
           </e>
           <e p="Employee" t="Include">
             <e p="AddEmployeePage.cshtml" t="Include" />
+            <e p="EditEmployeePage.cshtml" t="Include" />
             <e p="EmployeeProfilePage.cshtml" t="Include" />
             <e p="Employees.cshtml" t="Include" />
           </e>

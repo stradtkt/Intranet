@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Intra.Models;
 using Microsoft.AspNetCore.Http;
@@ -96,6 +97,41 @@ namespace Intra.Controllers
             ViewBag.TheUser = ActiveUser;
             ViewBag.User = _context.Employees.Where(u => u.EmplyeeId == id).SingleOrDefault();
             return View();
+        }
+
+        [HttpGet("edit")]
+        public IActionResult EditEmployeePage()
+        {
+            return View();
+        }
+
+        [HttpPut("employee/{id}/edit")]
+        public IActionResult EditEmplyee(int id, string name, string email, string image, string work, string job,
+            DateTime hire, DateTime dob, string sex, decimal salary, decimal bonus)
+        {
+            if (ActiveUser == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
+            if (ModelState.IsValid)
+            {
+                Employee employee = _context.Employees.Where(e => e.EmplyeeId == id).SingleOrDefault();
+                employee.Name = name;
+                employee.Email = email;
+                employee.Image = image;
+                employee.WorkDept = work;
+                employee.Job = job;
+                employee.HireDate = hire;
+                employee.Birthday = dob;
+                employee.Sex = sex;
+                employee.Salary = salary;
+                employee.Bonus = bonus;
+                _context.SaveChanges();
+                ViewBag.success = "User successfully edited";
+                return Redirect("/employee/" + id);
+            }
+            ViewBag.errors = "Employee was not updated, there was a problem when changing their settings.";
+            return Redirect("employee/" + id);
         }
     }
 }
