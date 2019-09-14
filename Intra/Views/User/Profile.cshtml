@@ -1,0 +1,15 @@
+@model Intra.Models.User
+@{
+    ViewData["Title"] = "Profile Page";                      
+}
+
+<div class="row">
+    <div class="col-12 col-md-6">
+        <h3 class="text-center mt-5 p-1">@ViewBag.User.FirstName @ViewBag.User.LastName's <br> @ViewData["Title"]</h3>
+        <p class="lead text-center"><b>Email:</b> @ViewBag.User.Email</p>
+        <p class="lead text-center"><b>DOB:</b> @ViewBag.User.Birthday</p>
+        <p class="text-center"><b>Rate:</b> @ViewBag.User.Rate</p>
+        <p class="text-center"><b>Hours:</b> @ViewBag.User.Hours</p>
+    </div>
+    <div class="col-12 col-md-6"></div>
+</div>

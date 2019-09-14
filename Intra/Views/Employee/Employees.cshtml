@@ -1,0 +1,55 @@
+@model Intra.Models.Employee
+@{
+    ViewData["Title"] = "Employees";
+}
+<div class="row">
+    <div class="col-12">
+        <h1 class="text-center text-info mt-5 mb-5">@ViewData["Title"]</h1>
+        <table class="table table-hover">
+            <thead class="bg-info text-white text-center">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Dept.</th>
+                <th>Phone #</th>
+                <th>Job</th>
+                <th>Hire Date</th>
+                <th>Sex</th>
+                <th>DOB</th>
+                <th>Salary</th>
+                <th>Bonus</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody class="text-center">
+            @foreach (var emp in ViewBag.Employees)
+            {
+                <tr>
+                    <td>@emp.EmployeeId</td>
+                    <td>@emp.Name</td>
+                    <td>@emp.Email</td>
+                    <td>@emp.WorkDept</td>
+                    <td>@emp.PhoneNo</td>
+                    <td>@emp.Job</td>
+                    <td>@emp.HireDate</td>
+                    <td>@emp.Sex</td>
+                    <td>@emp.Birthday</td>
+                    <td>@emp.Salary</td>
+                    <td>@emp.Bonus</td>
+                    <td>
+                        <a title="Delete Employee" asp-action="DeleteUser" asp-controller="User" class="btn btn-danger btn-sm btn-round">&times;</a>
+                        <a title="Edit Employee" href="" class="btn btn-warning btn-sm btn-round">&minus;</a>
+                        <a title="View Employee Profile" href="employee/@emp.EmployeeId" class="btn btn-info btn-sm btn-round">&CirclePlus;</a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 col-md-4">
+        <a asp-action="AddEmployee" asp-controller="Employee" class="btn btn-success btn-round">Employee &plus;</a>
+    </div>
+</div>
