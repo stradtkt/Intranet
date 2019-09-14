@@ -14,17 +14,17 @@
 </div>
 <div class="row">
     <div class="col-12 col-md-7 offset-md-3">
-        <h1 class="text-center text-info">@ViewData["Title"]</h1>
-    </div>
-</div>
-<div class="row">
-    <div class="col-12 col-md-7 offset-md-3">
-        <div class="card">
-            <h1 class="text-center text-info card-title">@ViewData["Title"]</h1>
+        <div class="card shadow-lg p-5">
+            <h1 class="text-center text-info card-title mb-3">@ViewData["Title"]</h1>
             <div class="card-content">
                 <form asp-action="AddEmployee" asp-controller="Employee" method="post">
                     <div class="form-group">
-                        <input asp-for="Name" class="form-control" placeholder="Name">
+                        <select asp-for="Name" class="form-control">
+                            @foreach (var name in ViewBag.AllNames)
+                            {
+                                <option value="@name.FirstName @name.LastName">@name.FirstName @name.LastName</option>
+                            }
+                        </select>
                     </div>
                     <div class="form-group">
                         <input asp-for="WorkDept" class="form-control" placeholder="Work Department">
@@ -50,7 +50,7 @@
                     <div class="form-group">
                         <input asp-for="PhoneNo" class="form-control" placeholder="Phone Number">
                     </div>
-                    <input type="submit" class="btn btn-block btn-info btn-round" value="Update Employee">
+                    <input type="submit" class="btn btn-block btn-info btn-round" value="Add Employee">
                 </form>
             </div>
             <div class="card-actions">

@@ -26,12 +26,25 @@ namespace Intra.Controllers
         [HttpGet("employees")]
         public IActionResult Employees()
         {
+            if (ActiveUser == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
+            ViewBag.TheUser = ActiveUser;
+            ViewBag.Employees = _context.Employees.ToList();
             return View();
         }
 
         [HttpGet("add-employee-page")]
         public IActionResult AddEmployeePage()
         {
+            if (ActiveUser == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
+
+            ViewBag.TheUser = ActiveUser;
+            ViewBag.AllNames = _context.Users.ToList();
             return View();
         }
 
@@ -50,7 +63,8 @@ namespace Intra.Controllers
                 {
                     Employee newEmp = new Employee
                     {
-                        Name = employee.Name,
+                        EmployeeId = employee.EmployeeId,
+                        Name = user.FirstName + " " + user.LastName,
                         Email = user.Email,
                         Image = employee.Image,
                         WorkDept = employee.WorkDept,
@@ -80,7 +94,7 @@ namespace Intra.Controllers
         [HttpGet("employee/delete/{id}")]
         public IActionResult DeleteEmployee(int id)
         {
-            Employee employee = _context.Employees.Where(e => e.EmplyeeId == id).SingleOrDefault();
+            Employee employee = _context.Employees.Where(e => e.EmployeeId == id).SingleOrDefault();
             _context.Employees.Remove(employee);
             _context.SaveChanges();
             return RedirectToAction("Employees");
@@ -95,13 +109,18 @@ namespace Intra.Controllers
             }
 
             ViewBag.TheUser = ActiveUser;
-            ViewBag.User = _context.Employees.Where(u => u.EmplyeeId == id).SingleOrDefault();
+            ViewBag.User = _context.Employees.Where(u => u.EmployeeId == id).SingleOrDefault();
             return View();
         }
 
         [HttpGet("edit")]
         public IActionResult EditEmployeePage()
         {
+            if (ActiveUser == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
+            ViewBag.TheUser = ActiveUser;
             return View();
         }
 
@@ -115,7 +134,7 @@ namespace Intra.Controllers
             }
             if (ModelState.IsValid)
             {
-                Employee employee = _context.Employees.Where(e => e.EmplyeeId == id).SingleOrDefault();
+                Employee employee = _context.Employees.Where(e => e.EmployeeId == id).SingleOrDefault();
                 employee.Name = name;
                 employee.Email = email;
                 employee.Image = image;
