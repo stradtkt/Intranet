@@ -1,0 +1,27 @@
+@model Intra.Models.Todo
+@{
+    ViewData["Title"] = "Todo";
+}
+<div class="row">
+    <div class="col-md-6 offset-3">
+        <div class="bg-danger">
+            <p class="text-center text-white">@ViewBag.errors</p>
+        </div>
+        <div class="bg-success">
+            <p class="text-center text-white">@ViewBag.success</p>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-10 offset-1">
+        <div class="card shadow-lg p-3">
+            <div class="card-content">
+                <h3 class="card-title text-center text-primary">@ViewBag.Todo.TodoTitle</h3>
+                <p class="card-text text-center">@ViewBag.Todo.TodoDescription</p>
+            </div>
+            <div class="card-actions">
+                <a asp-action="EditTodoPage" asp-controller="Todo" class="btn btn-warning btn-round">Edit Todo</a>
+            </div>
+        </div>
+    </div>
+</div>
