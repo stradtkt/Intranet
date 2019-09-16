@@ -1,0 +1,40 @@
+@model Intra.Models.Todo
+@{
+    ViewData["Title"] = "Edit Todo";
+}
+<div class="row">
+    <div class="col-md-6 offset-3">
+        <div class="bg-danger">
+            <p class="text-center text-white">@ViewBag.errors</p>
+        </div>
+        <div class="bg-success">
+            <p class="text-center text-white">@ViewBag.success</p>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 col-md-7 offset-md-3">
+        <div class="card shadow-lg p-3">
+            <div class="card-content">
+                <h1 class="card-title text-center text-info">@ViewData["Title"]</h1>
+                <form asp-action="EditTodo" asp-controller="Todo" method="post">
+                    <div class="form-group">
+                        <select asp-for="Employees.Name" class="form-control">
+                            @foreach (var name in Model.Employees.Name)
+                            {
+                                <option value="@Model.EmployeeId">@name</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="TodoTitle" class="form-control" value="@Model.TodoTitle">
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="TodoDescription" class="form-control" value="@Model.TodoDescription">
+                    </div>
+                    <input type="submit" value="Update Todo" class="btn btn-success btn-block">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
