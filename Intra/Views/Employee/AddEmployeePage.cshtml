@@ -22,25 +22,24 @@
                         <select asp-for="Name" class="form-control">
                             @foreach (var name in ViewBag.AllNames)
                             {
-                                <option value="@name.FirstName @name.LastName">@name.FirstName @name.LastName</option>
+                                <option value="@Model.">@name.FirstName @name.LastName</option>
                             }
                         </select>
                     </div>
                     <div class="form-group">
                         <input asp-for="WorkDept" class="form-control" placeholder="Work Department">
                     </div>
-                    <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                        <div class="fileinput-new thumbnail img-raised">
-                            <img src="http://style.anu.edu.au/_anu/4/images/placeholders/person_8x10.png" alt="...">
-                        </div>
-                        <div class="fileinput-preview fileinput-exists thumbnail img-raised"></div>
-                        <div>
-                            <span class="btn btn-raised btn-round btn-default btn-file">
-                                <span class="fileinput-new">Select image</span>
-                                <span class="fileinput-exists">Change</span>
-                                <input type="file" name="Image"/>
-                            </span>
-                            <a href="#" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
+                    <div class="form-group">
+                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                            <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
+                            <div>
+                                <span class=" btn-style btn-round btn btn-default btn-file">
+                                    <span class="fileinput-new">Select image</span>
+                                    <span class="fileinput-exists">Change</span>
+                                    <input type="file" name="Image">
+                                </span>
+                                <a href="#" class="btn-style btn-round btn fileinput-exists" data-dismiss="fileinput">Remove</a>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group">

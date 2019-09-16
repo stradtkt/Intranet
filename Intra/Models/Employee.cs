@@ -1,16 +1,17 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Intra.Models
 {
-    public class Employee
+    public class Employee : UserViewModel.BaseEntity
     {
         [Key] public int EmployeeId { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
         
         [Required(ErrorMessage = "Image is required")]
-        [DataType(DataType.ImageUrl)]
+        [DataType(DataType.Upload)]
         public string Image { get; set; }
         public string WorkDept { get; set; }
         public string PhoneNo { get; set; }
@@ -20,6 +21,17 @@ namespace Intra.Models
         public DateTime Birthday { get; set; }
         public decimal Salary { get; set; }
         public decimal Bonus { get; set; }
-        
+        public int UserId { get; set; }
+        public User Users { get; set; }
+        public List<Todo> Todos { get; set; }
+        public List<Calendar> Calendars { get; set; }
+
+        public Employee()
+        {
+            Calendars = new List<Calendar>();
+            Todos = new List<Todo>();
+            CreatedAt = DateTime.Now;
+            UpdatedAt = DateTime.Now;
+        }
     }
 }

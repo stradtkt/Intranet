@@ -3,6 +3,7 @@ using System.Linq;
 using Intra.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Intra.Controllers
 {
@@ -31,7 +32,7 @@ namespace Intra.Controllers
                 return RedirectToAction("Login", "User");
             }
             ViewBag.TheUser = ActiveUser;
-            ViewBag.Employees = _context.Employees.ToList();
+            ViewBag.Employees = _context.Employees.Include(u => u.Users).ToList();
             return View();
         }
 
@@ -49,30 +50,26 @@ namespace Intra.Controllers
         }
 
         [HttpPost("add-employee")]
-        public IActionResult AddEmployee(Employee employee, User user)
+        public IActionResult AddEmployee(Employee employee)
         {
-            User checkEmail = _context.Users.Where(u => u.Email == user.Email).SingleOrDefault();
             if (ActiveUser == null)
             {
                 return RedirectToAction("Login", "User");
             }
-
-            if (checkEmail == null)
-            {
-                if (ModelState.IsValid)
+            if (ModelState.IsValid)
                 {
                     Employee newEmp = new Employee
                     {
-                        EmployeeId = employee.EmployeeId,
-                        Name = user.FirstName + " " + user.LastName,
-                        Email = user.Email,
+                        EmployeeId = employee.UserId,
+                        Name = employee.Users.FirstName + " " + employee.Users.LastName,
+                        Email = employee.Users.Email,
                         Image = employee.Image,
                         WorkDept = employee.WorkDept,
                         PhoneNo = employee.PhoneNo,
                         Job = employee.Job,
                         HireDate = employee.HireDate,
                         Sex = employee.Sex,
-                        Birthday = user.Birthday,
+                        Birthday = employee.Users.Birthday,
                         Salary = employee.Salary,
                         Bonus = employee.Bonus
                     };
@@ -81,12 +78,6 @@ namespace Intra.Controllers
                     ViewBag.success = "Employee added!";
                     return RedirectToAction("Employees");
                 }
-            }
-            else
-            {
-                ViewBag.errors = "User already exists";
-                return RedirectToAction("Employees");
-            }
             ViewBag.errors = "Employee was not added, please try again.";
             return View("AddEmployeePage");
         }

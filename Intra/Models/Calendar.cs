@@ -7,8 +7,11 @@ namespace Intra.Models
     public class Calendar : UserViewModel.BaseEntity
     {
         [Key] public int CalendarId { get; set; }
-        public DateTime Start { get; set; }
-        public DateTime End { get; set; }
+        public string Start { get; set; }
+        public string End { get; set; }
+        public string Title { get; set; }
+        public int EmployeeId { get; set; }
+        public Employee Employees { get; set; }
         public int UserId { get; set; }
         public User Users { get; set; }
 

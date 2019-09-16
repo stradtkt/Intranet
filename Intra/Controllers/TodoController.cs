@@ -49,6 +49,12 @@ namespace Intra.Controllers
         [HttpGet("edit-todo-page")]
         public IActionResult EditTodoPage()
         {
+            if (ActiveUser == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
+
+            ViewBag.TheUser = ActiveUser;
             return View();
         }
 
@@ -95,6 +101,12 @@ namespace Intra.Controllers
         [HttpGet("add-todo-page")]
         public IActionResult AddTodoPage()
         {
+            if (ActiveUser == null)
+            {
+                return RedirectToAction("Login", "User");
+            }
+
+            ViewBag.TheUser = ActiveUser;
             return View();
         }
 
