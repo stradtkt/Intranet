@@ -46,6 +46,29 @@ namespace Intra.Controllers
             return View();
         }
 
+        [HttpGet("edit-todo-page")]
+        public IActionResult EditTodoPage()
+        {
+            return View();
+        }
+
+        [HttpPost("todos/{id}/edit-todo-page/edit")]
+        public IActionResult EditTodo(int id, int employee, string title, string description)
+        {
+            if (ModelState.IsValid)
+            {
+                Todo todo = _context.Todos.Where(t => t.TodoId == id).SingleOrDefault();
+                todo.EmployeeId = employee;
+                todo.TodoTitle = title;
+                todo.TodoDescription = description;
+                _context.SaveChanges();
+                ViewBag.success = "Your todo has been updated";
+                return RedirectToAction("Todos");
+            }
+            ViewBag.errors = "Todo was not updated";
+            return RedirectToAction("Todos");
+        }
+
         [HttpPost("add-todo")]
         public IActionResult AddTodo(Todo todo)
         {
