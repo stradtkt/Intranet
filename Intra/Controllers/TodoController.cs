@@ -91,6 +91,15 @@ namespace Intra.Controllers
             ViewBag.errors = "Todo was not added";
             return View("AddTodoPage");
         }
-        
+
+        [HttpGet("delete-todo/{id}")]
+        public IActionResult DeleteTodo(int id)
+        {
+            Todo todo = _context.Todos.Where(t => t.TodoId == id).SingleOrDefault();
+            _context.Todos.Remove(todo);
+            _context.SaveChanges();
+            ViewBag.success = "Your todo was deleted";
+            return RedirectToAction("Todos");
+        }
     }
 }
