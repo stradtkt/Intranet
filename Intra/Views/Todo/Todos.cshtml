@@ -1,0 +1,48 @@
+@model Intra.Models.Todo
+@{
+    ViewData["Title"] = "Todos";
+}
+<div class="row">
+    <div class="col-md-6 offset-3">
+        <div class="bg-danger">
+            <p class="text-center text-white">@ViewBag.errors</p>
+        </div>
+        <div class="bg-success">
+            <p class="text-center text-white">@ViewBag.success</p>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <div class="card shadow-lg">
+            <div class="card-content">
+                <h1 class="card-title text-center text-primary">@ViewData["Title"]</h1>
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>Employee</th>
+                        <th>Todo Title</th>
+                        <th>Todo Description</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var todo in ViewBag.Todos)
+                    {
+                        <tr>
+                            <td>@todo.EmployeeId</td>
+                            <td>@todo.TodoTitle</td>
+                            <td>@todo.TodoDescription</td>
+                            <td>
+                                <a href="" class="btn btn-danger btn-sm btn-round" title="Delete Todo">&times;</a>
+                                <a href="" class="btn btn-warning btn-sm btn-round" title="Edit Todo">&minus;</a>
+                                <a href="" class="btn btn-info btn-sm btn-round" title="View Todo">&CirclePlus;</a>
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
