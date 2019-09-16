@@ -39,3 +39,6 @@ C:\Users\Kevin\Desktop\development\Intra\Intra\obj\Debug\netcoreapp2.1\Razor\Vie
 C:\Users\Kevin\Desktop\development\Intra\Intra\obj\Debug\netcoreapp2.1\Razor\Views\Employee\EmployeeProfilePage.g.cshtml.cs
 C:\Users\Kevin\Desktop\development\Intra\Intra\obj\Debug\netcoreapp2.1\Razor\Views\Employee\Employees.g.cshtml.cs
 C:\Users\Kevin\Desktop\development\Intra\Intra\obj\Debug\netcoreapp2.1\Razor\Views\User\AddUserPage.g.cshtml.cs
+C:\Users\Kevin\Desktop\development\Intra\Intra\obj\Debug\netcoreapp2.1\Razor\Views\Todo\AddTodoPage.g.cshtml.cs
+C:\Users\Kevin\Desktop\development\Intra\Intra\obj\Debug\netcoreapp2.1\Razor\Views\Todo\EditTodoPage.g.cshtml.cs
+C:\Users\Kevin\Desktop\development\Intra\Intra\obj\Debug\netcoreapp2.1\Razor\Views\Todo\TheTodo.g.cshtml.cs

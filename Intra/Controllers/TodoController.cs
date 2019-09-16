@@ -92,6 +92,12 @@ namespace Intra.Controllers
             return View("AddTodoPage");
         }
 
+        [HttpGet("add-todo-page")]
+        public IActionResult AddTodoPage()
+        {
+            return View();
+        }
+
         [HttpGet("delete-todo/{id}")]
         public IActionResult DeleteTodo(int id)
         {

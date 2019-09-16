@@ -8,6 +8,9 @@ namespace Intra.Models
         [Key] public int EmployeeId { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
+        
+        [Required(ErrorMessage = "Image is required")]
+        [DataType(DataType.ImageUrl)]
         public string Image { get; set; }
         public string WorkDept { get; set; }
         public string PhoneNo { get; set; }
