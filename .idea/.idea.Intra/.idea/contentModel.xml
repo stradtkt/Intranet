@@ -64,6 +64,9 @@
             <e p="Error.cshtml" t="Include" />
           </e>
           <e p="Todo" t="Include">
+            <e p="AddTodoPage.cshtml" t="Include" />
+            <e p="EditTodoPage.cshtml" t="Include" />
+            <e p="TheTodo.cshtml" t="Include" />
             <e p="Todos.cshtml" t="Include" />
           </e>
           <e p="User" t="Include">

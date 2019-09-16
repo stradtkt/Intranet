@@ -1,0 +1,43 @@
+@model Intra.Models.Todo
+@{
+    ViewData["Title"] = "Add Employee";
+}
+<div class="row">
+    <div class="col-md-6 offset-3">
+        <div class="bg-danger">
+            <p class="text-center text-white">@ViewBag.errors</p>
+        </div>
+        <div class="bg-success">
+            <p class="text-center text-white">@ViewBag.success</p>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 col-md-7 offset-md-3">
+        <div class="card shadow-lg p-5">
+            <h1 class="text-center text-info card-title mb-3">@ViewData["Title"]</h1>
+            <div class="card-content">
+                <form asp-action="AddTodo" asp-controller="Todo" method="post">
+                    <div class="form-group">
+                        <select asp-for="Employees.Name" class="form-control">
+                            @foreach (var name in ViewBag.AllNames)
+                            {
+                                <option value="@name.FirstName @name.LastName">@name.FirstName @name.LastName</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="TodoTitle" class="form-control" placeholder="Todo Title">
+                    </div>
+                    <div class="form-group">
+                        <textarea asp-for="TodoDescription" class="form-control" cols="10" rows="3"></textarea>
+                    </div>
+                    <input type="submit" class="btn btn-block btn-info btn-round" value="Add Todo">
+                </form>
+            </div>
+            <div class="card-actions">
+                <a href="Todos" class="btn btn-warning btn-round">Go Back &circlearrowleft;</a>
+            </div>
+        </div>
+    </div>
+</div>
