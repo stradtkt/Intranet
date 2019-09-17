@@ -18,7 +18,6 @@ namespace Intra.Models
         [Required(ErrorMessage = "Last name is required")]
         [MinLength(2, ErrorMessage = "A minimum of 2 is allowed for name")]
         [MaxLength(130, ErrorMessage = "A maximum of 30 is allowed for name")]
-        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Your name must only contain letters")]
         [Display(Name = "Name")]
         public string Name { get; set; }
 

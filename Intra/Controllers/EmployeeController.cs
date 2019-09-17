@@ -33,6 +33,7 @@ namespace Intra.Controllers
                 return RedirectToAction("Login");
             }
             ViewBag.TheUser = ActiveUser;
+            ViewBag.Employees = _context.Employees.ToList();
             return View();
         }
 
@@ -57,6 +58,7 @@ namespace Intra.Controllers
             }
             if (ModelState.IsValid)
                 {
+                    PasswordHasher<Employee> hasher = new PasswordHasher<Employee>();
                     Employee newEmp = new Employee
                     {
                         EmployeeId = employee.EmployeeId,
@@ -70,7 +72,8 @@ namespace Intra.Controllers
                         Sex = employee.Sex,
                         Birthday = employee.Birthday,
                         Salary = employee.Salary,
-                        Bonus = employee.Bonus
+                        Bonus = employee.Bonus,
+                        Password = hasher.HashPassword(employee, employee.Password)
                     };
                     _context.Employees.Add(newEmp);
                     _context.SaveChanges();
@@ -103,18 +106,19 @@ namespace Intra.Controllers
             return View();
         }
 
-        [HttpGet("edit")]
-        public IActionResult EditEmployeePage()
+        [HttpGet("employee/edit-page/{id}")]
+        public IActionResult EditEmployeePage(int id)
         {
             if (ActiveUser == null)
             {
                 return RedirectToAction("Login");
             }
             ViewBag.TheUser = ActiveUser;
+            ViewBag.TheEmp = _context.Employees.Where(e => e.EmployeeId == id).SingleOrDefault();
             return View();
         }
 
-        [HttpPut("employee/{id}/edit")]
+        [HttpPost("employee/edit-page/{id}/edit")]
         public IActionResult EditEmployee(int id, string name, string email, string image, string work, string job,
             DateTime hire, DateTime dob, string sex, decimal salary, decimal bonus)
         {

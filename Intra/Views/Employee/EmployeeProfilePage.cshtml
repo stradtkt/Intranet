@@ -13,26 +13,55 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-12">
-        <div class="card">
-            <img src="~/img/@ViewBag.Emp.Image" alt="" class="card-img-top">
+    <div class="col-12 col-md-7 offset-md-3">
+        <div class="card p-3">
+            <img src="~/images/@ViewBag.User.Image" alt="" class="card-img-top" style="height: 250px; width: 180px; margin: 0 auto; display: block; border-radius:  50%;">
             <div class="card-content">
-                <h3 class="card-title text-center">@ViewBag.Emp.Name <a href="" class="btn btn-sm btn-round btn-warning" title="Edit Section">&square;</a></h3>
-                <div class="col-6">
-                    <p class="card-title text-center">@ViewBag.Emp.EmployeeId <a href="" class="btn btn-sm btn-round btn-warning" title="Edit Section">&square;</a></p>
-                    <p class="lead text-left">@ViewBag.Emp.Email <a href="" class="btn btn-sm btn-round btn-warning" title="Edit Section">&square;</a></p>
-                    <p class="lead text-left">@ViewBag.Emp.WorkDept <a href="" class="btn btn-sm btn-round btn-warning" title="Edit Section">&square;</a></p>
-                    <p class="lead text-left">@ViewBag.Emp.Job <a href="" class="btn btn-sm btn-round btn-warning" title="Edit Section">&square;</a></p>
-                    <p class="lead text-left">@ViewBag.Emp.PhoneNo <a href="" class="btn btn-sm btn-round btn-warning" title="Edit Section">&square;</a></p>
-                </div>
-                <div class="col-6">
-                    <p class="lead text-left">@ViewBag.Emp.HireDate <a href="" class="btn btn-sm btn-round btn-warning" title="Edit Section">&square;</a></p>
-                    <p class="lead text-left">@ViewBag.Emp.Birthday <a href="" class="btn btn-sm btn-round btn-warning" title="Edit Section">&square;</a></p>
-                    <p class="lead text-left">@ViewBag.Emp.Sex <a href="" class="btn btn-sm btn-round btn-warning" title="Edit Section">&square;</a></p>
-                    <p class="lead text-left">@ViewBag.Emp.Salary <a href="" class="btn btn-sm btn-round btn-warning" title="Edit Section">&square;</a></p>
-                    <p class="lead text-left">@ViewBag.Emp.Bonus <a href="" class="btn btn-sm btn-round btn-warning" title="Edit Section">&square;</a></p>
+                <h3 class="card-title text-center">
+                    @ViewBag.User.Name <a href="" class="btn btn-sm btn-round btn-warning" title="Edit Section">&square;</a>
+                </h3>
+                <div class="row">
+                    <div class="col-6">
+                        <p class="lead text-left">
+                            ID: @ViewBag.User.EmployeeId <a href="" class="btn btn-sm btn-round btn-warning" title="Edit Section">&square;</a>
+                        </p>
+                        <p class="lead text-left">
+                            Email: @ViewBag.User.Email <a href="" class="btn btn-sm btn-round btn-warning" title="Edit Section">&square;</a>
+                        </p>
+                        <p class="lead text-left">
+                            Dept: @ViewBag.User.WorkDept <a href="" class="btn btn-sm btn-round btn-warning" title="Edit Section">&square;</a>
+                        </p>
+                        <p class="lead text-left">
+                            Job: @ViewBag.User.Job <a href="" class="btn btn-sm btn-round btn-warning" title="Edit Section">&square;</a>
+                        </p>
+                        <p class="lead text-left">
+                            Phone: @ViewBag.User.PhoneNo <a href="" class="btn btn-sm btn-round btn-warning" title="Edit Section">&square;</a>
+                        </p>
+                    </div>
+                    <div class="col-6">
+                        <p class="lead text-left">
+                            Hire Date: @ViewBag.User.HireDate <a href="" class="btn btn-sm btn-round btn-warning" title="Edit Section">&square;</a>
+                        </p>
+                        <p class="lead text-left">
+                            Birthday: @ViewBag.User.Birthday <a href="" class="btn btn-sm btn-round btn-warning" title="Edit Section">&square;</a>
+                        </p>
+                        <p class="lead text-left">
+                            Sex: @ViewBag.User.Sex <a href="" class="btn btn-sm btn-round btn-warning" title="Edit Section">&square;</a>
+                        </p>
+                        <p class="lead text-left">
+                            Salary: @ViewBag.User.Salary <a href="" class="btn btn-sm btn-round btn-warning" title="Edit Section">&square;</a>
+                        </p>
+                        <p class="lead text-left">
+                            Bonus: @ViewBag.User.Bonus <a href="" class="btn btn-sm btn-round btn-warning" title="Edit Section">&square;</a>
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 col-md-4">
+        <a asp-action="Employees" asp-controller="Employee" class="btn btn-warning btn-round">Go Back &circlearrowleft;</a>
     </div>
 </div>

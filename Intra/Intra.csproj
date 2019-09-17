@@ -25,4 +25,9 @@
       <_ContentIncludedByDefault Remove="Views\User\Users.cshtml" />
     </ItemGroup>
 
+
+    <ItemGroup>
+      <Folder Include="wwwroot\images" />
+    </ItemGroup>
+
 </Project>

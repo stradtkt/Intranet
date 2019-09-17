@@ -14,36 +14,52 @@
 </div>
 <div class="row">
     <div class="col-12 col-md-7 offset-md-3">
-        <div class="card shadow-lg">
+        <div class="card shadow-lg p-3">
             <h1 class="text-center text-info card-title">@ViewData["Title"]</h1>
             <div class="card-content">
-                <form asp-action="EditEmployee" asp-controller="Employee" method="post">
+                <form action="@ViewBag.TheEmp.EmployeeId/edit" method="post">
                     <div class="form-group">
-                        <input type="text" name="Name" id="" class="form-control" value="@Model.Name">
+                        <input type="text" name="Name" class="form-control" value="@ViewBag.TheEmp.Name">
                     </div>
                     <div class="form-group">
-                        <input type="text" name="WorkDept" id="" class="form-control" value="@Model.WorkDept">
+                        <input type="email" name="Email" class="form-control" value="@ViewBag.TheEmp.Email">
                     </div>
                     <div class="form-group">
-                        <input type="file" name="Image" id="" class="form-control" value="@Model.Image">
+                        <input type="text" name="WorkDept" class="form-control" value="@ViewBag.TheEmp.WorkDept" placeholder="Work Department">
                     </div>
                     <div class="form-group">
-                        <input type="text" name="Job" id="" class="form-control" value="@Model.Job">
+                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                            <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px;"></div>
+                            <div>
+                                <span class=" btn-style btn-round btn btn-default btn-file">
+                                    <span class="fileinput-new">Select image</span>
+                                    <span class="fileinput-exists">Change</span>
+                                    <input type="file" name="Image" value="@ViewBag.TheEmp.Image">
+                                </span>
+                                <a href="#" class="btn-style btn-round btn fileinput-exists" data-dismiss="fileinput">Remove</a>
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group">
-                        <input type="datetime" name="HireDate" id="" class="form-control" value="@Model.HireDate">
+                        <input type="text" name="Job" class="form-control" value="@ViewBag.TheEmp.Job" placeholder="Job">
                     </div>
                     <div class="form-group">
-                        <input type="text" name="Sex" id="" class="form-control" value="@Model.Sex">
+                        <input type="datetime" name="Birthday" class="form-control" value="@ViewBag.TheEmp.Birthday">
                     </div>
                     <div class="form-group">
-                        <input type="text" name="Salary" id="" class="form-control" value="@Model.Salary">
+                        <input type="datetime" name="HireDate" class="form-control" value="@ViewBag.TheEmp.HireDate">
                     </div>
                     <div class="form-group">
-                        <input type="text" name="Bonus" id="" class="form-control" value="@Model.Bonus">
+                        <input type="text" name="Sex" class="form-control" value="@ViewBag.TheEmp.Sex" placeholder="Sex">
                     </div>
                     <div class="form-group">
-                        <input type="text" name="PhoneNo" id="" class="form-control" value="@Model.PhoneNo">
+                        <input type="text" name="Salary" class="form-control" value="@ViewBag.TheEmp.Salary" placeholder="Salary">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="Bonus" class="form-control" value="@ViewBag.TheEmp.Bonus" placeholder="Bonus">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="PhoneNo" class="form-control" value="@ViewBag.TheEmp.PhoneNo" placeholder="Phone Number">
                     </div>
                     <input type="submit" class="btn btn-block btn-info btn-round" value="Update Employee">
                 </form>
