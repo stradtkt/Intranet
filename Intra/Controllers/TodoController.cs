@@ -1,7 +1,9 @@
+using System.Collections.Generic;
 using System.Linq;
 using Intra.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Intra.Controllers
 {
@@ -13,11 +15,11 @@ namespace Intra.Controllers
         {
             _context = context;
         }
-        private User ActiveUser 
+        private Employee ActiveUser 
         {
             get 
             {
-                return _context.Users.Where(u => u.UserId == HttpContext.Session.GetInt32("UserId")).FirstOrDefault();
+                return _context.Employees.Where(u => u.EmployeeId == HttpContext.Session.GetInt32("EmployeeId")).FirstOrDefault();
             }
         }
         [HttpGet("todos")]
@@ -25,7 +27,7 @@ namespace Intra.Controllers
         {
             if (ActiveUser == null)
             {
-                return RedirectToAction("Login", "User");
+                return RedirectToAction("Login", "Employee");
             }
 
             ViewBag.Todos = _context.Todos.ToList();
@@ -38,7 +40,7 @@ namespace Intra.Controllers
         {
             if (ActiveUser == null)
             {
-                return RedirectToAction("Login", "User");
+                return RedirectToAction("Login", "Employee");
             }
 
             ViewBag.TheUser = ActiveUser;
@@ -51,7 +53,7 @@ namespace Intra.Controllers
         {
             if (ActiveUser == null)
             {
-                return RedirectToAction("Login", "User");
+                return RedirectToAction("Login", "Employee");
             }
 
             ViewBag.TheUser = ActiveUser;
@@ -80,12 +82,13 @@ namespace Intra.Controllers
         {
             if (ActiveUser == null)
             {
-                return RedirectToAction("Login", "User");
+                return RedirectToAction("Login", "Employee");
             }
             if (ModelState.IsValid)
             {
                 Todo newTodo = new Todo
                 {
+                    EmployeeId = todo.EmployeeId,
                     TodoId = todo.TodoId,
                     TodoTitle = todo.TodoTitle,
                     TodoDescription = todo.TodoDescription
@@ -103,10 +106,12 @@ namespace Intra.Controllers
         {
             if (ActiveUser == null)
             {
-                return RedirectToAction("Login", "User");
+                return RedirectToAction("Login", "Employee");
             }
 
             ViewBag.TheUser = ActiveUser;
+            List<Employee> employees = _context.Employees.ToList();
+            ViewBag.AllNames = employees;
             return View();
         }
 

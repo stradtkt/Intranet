@@ -18,4 +18,11 @@
         <PackageReference Include="MySql.Data.EntityFrameworkCore" Version="8.0.17" />
     </ItemGroup>
 
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Views\User\AddUserPage.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\User\Profile.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\User\Users.cshtml" />
+    </ItemGroup>
+
 </Project>

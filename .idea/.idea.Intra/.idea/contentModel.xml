@@ -16,7 +16,6 @@
           <e p="EmployeeController.cs" t="Include" />
           <e p="HomeController.cs" t="Include" />
           <e p="TodoController.cs" t="Include" />
-          <e p="UserController.cs" t="Include" />
         </e>
         <e p="Intra.csproj" t="IncludeRecursive" />
         <e p="Intra.mwb" t="Include" />
@@ -27,7 +26,6 @@
           <e p="Employee.cs" t="Include" />
           <e p="ErrorViewModel.cs" t="Include" />
           <e p="Todo.cs" t="Include" />
-          <e p="User.cs" t="Include" />
           <e p="UserViewModel.cs" t="Include" />
         </e>
         <e p="obj" t="ExcludeRecursive">
@@ -53,6 +51,8 @@
             <e p="EditEmployeePage.cshtml" t="Include" />
             <e p="EmployeeProfilePage.cshtml" t="Include" />
             <e p="Employees.cshtml" t="Include" />
+            <e p="Login.cshtml" t="Include" />
+            <e p="Register.cshtml" t="Include" />
           </e>
           <e p="Home" t="Include">
             <e p="Dashboard.cshtml" t="Include" />
@@ -68,13 +68,6 @@
             <e p="EditTodoPage.cshtml" t="Include" />
             <e p="TheTodo.cshtml" t="Include" />
             <e p="Todos.cshtml" t="Include" />
-          </e>
-          <e p="User" t="Include">
-            <e p="AddUserPage.cshtml" t="Include" />
-            <e p="Login.cshtml" t="Include" />
-            <e p="Profile.cshtml" t="Include" />
-            <e p="Register.cshtml" t="Include" />
-            <e p="Users.cshtml" t="Include" />
           </e>
         </e>
         <e p="wwwroot" t="Include">

@@ -13,21 +13,14 @@ namespace Intra.Models
     public class RegisterUser : BaseEntity
     {
         [Key]
-        public int UserId { get; set; }
-
-        [Required(ErrorMessage = "First Name is required")]
-        [MinLength(2, ErrorMessage = "A minimum of 2 is allowed for first name")]
-        [MaxLength(30, ErrorMessage = "A maximum of 30 is allowed for first name")]
-        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Your first name must only contain letters")]
-        [Display(Name = "First Name")]
-        public string FirstName { get; set; }
+        public int EmployeeId { get; set; }
 
         [Required(ErrorMessage = "Last name is required")]
-        [MinLength(2, ErrorMessage = "A minimum of 2 is allowed for last name")]
-        [MaxLength(30, ErrorMessage = "A maximum of 30 is allowed for last name")]
-        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Your last name must only contain letters")]
-        [Display(Name = "Last Name")]
-        public string LastName { get; set; }
+        [MinLength(2, ErrorMessage = "A minimum of 2 is allowed for name")]
+        [MaxLength(130, ErrorMessage = "A maximum of 30 is allowed for name")]
+        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Your name must only contain letters")]
+        [Display(Name = "Name")]
+        public string Name { get; set; }
 
         [Required(ErrorMessage = "Email is required")]
         [EmailAddress]

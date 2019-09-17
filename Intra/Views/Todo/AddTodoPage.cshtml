@@ -19,11 +19,8 @@
             <div class="card-content">
                 <form asp-action="AddTodo" asp-controller="Todo" method="post">
                     <div class="form-group">
-                        <select asp-for="Employees.Name" class="form-control">
-                            @foreach (var name in ViewBag.AllNames)
-                            {
-                                <option value="@name.FirstName @name.LastName">@name.FirstName @name.LastName</option>
-                            }
+                        <select asp-for="EmployeeId" asp-items="@ViewBag.AllNames" class="form-control">
+                            <option value="">Please Select An Item</option>
                         </select>
                     </div>
                     <div class="form-group">

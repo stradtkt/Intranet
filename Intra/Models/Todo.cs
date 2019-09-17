@@ -11,8 +11,6 @@ namespace Intra.Models
         public string TodoDescription { get; set; }
         public int EmployeeId { get; set; }
         public Employee Employees { get; set; }
-        public int UserId { get; set; }
-        public User Users { get; set; }
 
         public Todo()
         {

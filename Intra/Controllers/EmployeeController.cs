@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using Intra.Models;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,11 +17,11 @@ namespace Intra.Controllers
             _context = context;
         }
 
-        private User ActiveUser
+        private Employee ActiveUser
         {
             get
             {
-                return _context.Users.Where(u => u.UserId == HttpContext.Session.GetInt32("UserId")).FirstOrDefault();
+                return _context.Employees.Where(u => u.EmployeeId == HttpContext.Session.GetInt32("EmployeeId")).FirstOrDefault();
             }
         }
 
@@ -29,10 +30,9 @@ namespace Intra.Controllers
         {
             if (ActiveUser == null)
             {
-                return RedirectToAction("Login", "User");
+                return RedirectToAction("Login");
             }
             ViewBag.TheUser = ActiveUser;
-            ViewBag.Employees = _context.Employees.Include(u => u.Users).ToList();
             return View();
         }
 
@@ -41,11 +41,10 @@ namespace Intra.Controllers
         {
             if (ActiveUser == null)
             {
-                return RedirectToAction("Login", "User");
+                return RedirectToAction("Login");
             }
 
             ViewBag.TheUser = ActiveUser;
-            ViewBag.AllNames = _context.Users.ToList();
             return View();
         }
 
@@ -54,22 +53,22 @@ namespace Intra.Controllers
         {
             if (ActiveUser == null)
             {
-                return RedirectToAction("Login", "User");
+                return RedirectToAction("Login");
             }
             if (ModelState.IsValid)
                 {
                     Employee newEmp = new Employee
                     {
-                        EmployeeId = employee.UserId,
-                        Name = employee.Users.FirstName + " " + employee.Users.LastName,
-                        Email = employee.Users.Email,
+                        EmployeeId = employee.EmployeeId,
+                        Name = employee.Name,
+                        Email = employee.Email,
                         Image = employee.Image,
                         WorkDept = employee.WorkDept,
                         PhoneNo = employee.PhoneNo,
                         Job = employee.Job,
                         HireDate = employee.HireDate,
                         Sex = employee.Sex,
-                        Birthday = employee.Users.Birthday,
+                        Birthday = employee.Birthday,
                         Salary = employee.Salary,
                         Bonus = employee.Bonus
                     };
@@ -96,7 +95,7 @@ namespace Intra.Controllers
         {
             if (ActiveUser == null)
             {
-                return RedirectToAction("Login", "User");
+                return RedirectToAction("Login");
             }
 
             ViewBag.TheUser = ActiveUser;
@@ -109,7 +108,7 @@ namespace Intra.Controllers
         {
             if (ActiveUser == null)
             {
-                return RedirectToAction("Login", "User");
+                return RedirectToAction("Login");
             }
             ViewBag.TheUser = ActiveUser;
             return View();
@@ -121,7 +120,7 @@ namespace Intra.Controllers
         {
             if (ActiveUser == null)
             {
-                return RedirectToAction("Login", "User");
+                return RedirectToAction("Login");
             }
             if (ModelState.IsValid)
             {
@@ -142,6 +141,72 @@ namespace Intra.Controllers
             }
             ViewBag.errors = "Employee was not updated, there was a problem when changing their settings.";
             return Redirect("employee/" + id);
+        }
+        [HttpGet("login")]
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpGet("register")]
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost("register-user")]
+        public IActionResult RegisterUser(UserViewModel.RegisterUser user)
+        {
+            Employee checkEmail = _context.Employees.Where(u => u.Email == user.Email).SingleOrDefault();
+            if (checkEmail != null)
+            {
+                ViewBag.errors = "This email already exists";
+                return RedirectToAction("Register");
+            }
+
+            if (ModelState.IsValid)
+            {
+                PasswordHasher<UserViewModel.RegisterUser> hasher = new PasswordHasher<UserViewModel.RegisterUser>();
+                Employee newUser = new Employee
+                {
+                    EmployeeId = user.EmployeeId,
+                    Name = user.Name,
+                    Email = user.Email,
+                    Password = hasher.HashPassword(user, user.Password),
+                    Birthday = user.Birthday
+                };
+                _context.Add(newUser);
+                _context.SaveChanges();
+                return RedirectToAction("Login");
+            }
+
+            return View("Register");
+        }
+
+        [HttpPost("login-user")]
+        public IActionResult LoginUser(UserViewModel.LoginUser user)
+        {
+            Employee checkEmail = _context.Employees.Where(u => u.Email == user.Email).SingleOrDefault();
+            if (checkEmail != null)
+            {
+                var hasher = new PasswordHasher<Employee>();
+                if (0 != hasher.VerifyHashedPassword(checkEmail, checkEmail.Password, user.Password))
+                {
+                    HttpContext.Session.SetInt32("EmployeeId", checkEmail.EmployeeId);
+                    HttpContext.Session.SetString("FirstName", checkEmail.Name);
+                    return RedirectToAction("Dashboard", "Home");
+                }
+                else
+                {
+                    ViewBag.errors = "Incorrect Password";
+                    return View("Register");
+                }
+            }
+            else
+            {
+                ViewBag.errors = "Email not registered";
+                return View("Register");
+            }
         }
     }
 }

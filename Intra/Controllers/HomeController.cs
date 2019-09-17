@@ -16,16 +16,17 @@ namespace Intra.Controllers
         {
             _context = context;
         }
-        private User ActiveUser 
+        private Employee ActiveUser 
         {
             get 
             {
-                return _context.Users.Where(u => u.UserId == HttpContext.Session.GetInt32("UserId")).FirstOrDefault();
+                return _context.Employees.Where(u => u.EmployeeId == HttpContext.Session.GetInt32("EmployeeId")).FirstOrDefault();
             }
         }
         [HttpGet]
         public IActionResult Index()
         {
+            ViewBag.TheUser = ActiveUser;
             return View();
         }
 
@@ -34,7 +35,7 @@ namespace Intra.Controllers
         {
             if (ActiveUser == null)
             {
-                return RedirectToAction("Login", "User");
+                return RedirectToAction("Login", "Employee");
             }
             ViewBag.TheUser = ActiveUser;
             return View();
